@@ -5,8 +5,10 @@ import random                               # импорты
 
 bot = telebot.TeleBot('1842261563:AAFUP-lfLPTRhEkSfPoNM9hFLB53ltxbwLQ')             # токен
 
-memory_from_user = dict()                 # хранитель данных, полученных от пользователя
-memory_from_bot = dict()                  # хранитель данных, отправляемых ботом
+with open('data_from_bot.json', 'r', encoding='utf-8') as p1:       # хранитель данных, полученных от бота
+    memory_from_bot = json.load(p1)
+with open('data_from_user.json', 'r', encoding='utf-8') as u1:      # хранитель данных, полученных от пользователя
+    memory_from_user = json.load(u1)
 
 
 def send_upvote(message, text, i, number):                  # отправляет апвоут
