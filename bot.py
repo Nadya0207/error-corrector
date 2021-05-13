@@ -24,6 +24,7 @@ def send_upvote(message, text, i, number):                  # отправляе
 def get_answer(message):
     if message.from_user.id not in memory_from_user:
         memory_from_user[message.from_user.id] = list()
+    print(message.text)
     memory_from_user[message.from_user.id].append({'text': message.text, 'time': message.date})
     with open('data_from_user.json', 'w', encoding='utf-8') as r:
         json.dump(memory_from_user, r, ensure_ascii=False, indent=4)
@@ -101,7 +102,6 @@ def callback_worker(call):
         splited_text = text.split('$')
         s = random.randint(0, len(splited_text) - 1)
         msg_send_first = splited_text[s]
-        memory_from_bot[call.from_user.id] = msg_send_first
         msg_send_second = send_upvote(call, splited_text, s, 'number2')
         bot.register_next_step_handler(msg_send_second, get_answer)
         if call.from_user.id not in memory_from_bot:
@@ -116,7 +116,6 @@ def callback_worker(call):
         splited_text = text.split('$')
         s = random.randint(0, len(splited_text) - 1)
         msg_send_first = splited_text[s]
-        memory_from_bot[call.from_user.id] = msg_send_first
         msg_send_second = send_upvote(call, splited_text, s, 'number3')
         bot.register_next_step_handler(msg_send_second, get_answer)
         if call.from_user.id not in memory_from_bot:
