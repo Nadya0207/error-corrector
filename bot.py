@@ -26,7 +26,6 @@ def send_upvote(message, text, i, number):                  # отправляе
 def get_answer(message):
     if message.from_user.id not in memory_from_user:
         memory_from_user[message.from_user.id] = list()
-    print(message.text)
     memory_from_user[message.from_user.id].append({'text': message.text, 'time': message.date})
     with open('data_from_user.json', 'w', encoding='utf-8') as r:
         json.dump(memory_from_user, r, ensure_ascii=False, indent=4)
