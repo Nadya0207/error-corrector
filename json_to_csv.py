@@ -1,9 +1,10 @@
+# работает только с "чистыми" файлами, в которых нет строчек, которые появляются из-за недочетов бота
 import re
 import json
 import csv
 
 
-def delete_extra(data):
+def delete_extra(data):                     # удаляет повторяющиеся строки парами
     for i in data.values():
         result = []
         nabor_k = []
@@ -22,7 +23,7 @@ def delete_extra(data):
     return data
 
 
-def delete_matches(data):
+def delete_matches(data):                       # удаляет абсолютно одинаковы строчки
     for i in data.values():
         for k in range(min((len(i[0]['from_user']) - 1), (len(i[1]['from_bot']) - 1))):
             if i[0]['from_user'][k]['text'] == i[1]['from_bot'][k]['text']:
@@ -31,7 +32,7 @@ def delete_matches(data):
     return data
 
 
-def tokenizator(data):
+def tokenizator(data):              # токенизатор
     token_from_user = []
     token_from_bot = []
     for i in data.values():
@@ -54,7 +55,7 @@ def tokenizator(data):
     return token_from_all
 
 
-def match_token(token):
+def match_token(token):             # удаляет пары одинаковых токенов
     token_selected = dict()
     for i in token.keys():
         if i == token[i]:
@@ -64,17 +65,17 @@ def match_token(token):
     return token_selected
 
 
-def ready_data(data):
+def ready_data(data):                       # объединяет все функции
     return match_token(tokenizator(delete_matches(delete_extra(data))))
 
 
-with open('data_from_bot.json', 'r', encoding='utf-8') as f:
+with open('data_from_bot.json', 'r', encoding='utf-8') as f:                # чтение из файлов
     memory_from_bot = json.load(f)
 
 with open('data_from_user.json', 'r', encoding='utf-8') as f1:
     memory_from_user = json.load(f1)
 
-memory_all = dict()
+memory_all = dict()                 # формирует общий словарь
 
 for key_1 in memory_from_bot.keys():
     for key_2 in memory_from_user.keys():
@@ -85,7 +86,7 @@ for key_1 in memory_from_bot.keys():
 m = ready_data(memory_all)
 
 
-with open('data.csv', 'w') as csv_file:
+with open('data.csv', 'w') as csv_file:                 # записывает файл в таблицу
     writer = csv.writer(csv_file, delimiter=';', lineterminator='\n')
     for skz in range(len(m) - 1):
         writer.writerow([list(m)[skz], str(list(m.values())[skz])])
