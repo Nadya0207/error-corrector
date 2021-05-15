@@ -28,7 +28,7 @@
  
 ## :computer: Модули, использующиеся при написании программы:  
 
-json, telebot, random, re
+json, telebot, random, re, csv
 
 ## :star2:Что является критерием завершенного проекта?
 
