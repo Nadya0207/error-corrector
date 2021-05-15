@@ -2,7 +2,7 @@
 
 Целью нашего проекта является выявление типа ошибок, которые не исправляются обычными корректорами ошибок, при помощи сбора данных ботом-апвоутом, созданным в телеграмме.
 
-## !(https://yandex.ru/images/search?from=tabbar&text=reddit&pos=13&img_url=https%3A%2F%2Fcdn.tugatech.com.pt%2Fimagens%2Ftopicos%2Ftugatech-2019-03-16-e2c50394-57fa-4276-9209-c2c0c878f6eb.jpg&rpt=simage) ***@texteaterbot - название в телеграм.***
+## !(https://github.com/Nadya0207/error-corrector/blob/main/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2009-05-2021%20094616.jpg) ***@texteaterbot - название в телеграм.***
 
 ## :information_desk_person:Команда и распределение обязанностей:
 
