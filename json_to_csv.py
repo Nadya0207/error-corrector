@@ -1,6 +1,6 @@
 import re
 import json
-# import csv
+import csv
 
 
 def delete_extra(data):
@@ -14,7 +14,7 @@ def delete_extra(data):
             else:
                 result.append(i[0]['from_user'][k])
         i[0]['from_user'] = result
-        ne_nabor_k = set(range(len(i[0]['from_user']) - 1))
+        ne_nabor_k = set(range(len(i[1]['from_bot']) - 1))
         ne_nabor_k.difference_update(set(nabor_k))
         for k1 in ne_nabor_k:
             result1.append(i[1]['from_bot'][k1])
@@ -82,12 +82,10 @@ for key_1 in memory_from_bot.keys():
             memory_all[key_1] = [{'from_user': memory_from_user[key_2]}, {'from_bot': memory_from_bot[key_1]}]
 
 
-# with open('data.csv', 'w') as csv_file:
-  # writer = csv.writer(csv_file, delimiter=';', lineterminator='\n')
-   # for ii in range(len(ready_data(memory_all))):
-    #    writer.writerow([list(ready_data(memory_all))[ii], str(list(ready_data(memory_all).values())[ii])])
-       #  print([list(ready_data(memory_all))[ii], str(list(ready_data(memory_all).values())[ii])])
-print(delete_extra(memory_all))
- #print(memory_all)
-# print(memory_from_user)
-# print(memory_from_bot)
+m = ready_data(memory_all)
+
+
+with open('data.csv', 'w') as csv_file:
+    writer = csv.writer(csv_file, delimiter=';', lineterminator='\n')
+    for skz in range(len(m) - 1):
+        writer.writerow([list(m)[skz], str(list(m.values())[skz])])
